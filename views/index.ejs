@@ -1,0 +1,156 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liquid Tree Monitoring</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <h1>Liquid Tree Monitoring</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>MAC Address</th>
+                <th>Name</th>
+                <th>Location</th>
+                <th>Online Status</th>
+                <th>Data</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% systems.forEach(system => { %>
+            <tr>
+                <td><%= system.macAddress %></td>
+                <td><%= system.name %></td>
+                <td><%= system.location %></td>
+                <td><%= system.isOnline ? 'Online' : 'Offline' %></td>
+                <td>
+                    Temperature: <%= system.data.temperature %> °C<br />
+                    Humidity: <%= system.data.humidity %> %<br />
+                    pH Level: <%= system.data.pHLevel %>
+                </td>
+                <td><a href='/api/systems/<%=system.macAddress %>'> check more</a></td>
+            </tr>
+            <% }); %>
+        </tbody>
+    </table>
+</body>
+</html> -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aigle Air Monitoring</title>
+    <!-- External CSS -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap">
+    <style>
+        body {
+            background: radial-gradient(circle, #1a202c, #0f141b);
+            color: #e2e8f0;
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            text-align: center;
+            color: #4fd1c5;
+            margin: 20px 0;
+            font-size: 2.5rem;
+            text-shadow: 0 0 10px #4fd1c5, 0 0 20px #38b2ac;
+        }
+
+        table {
+            width: 90%;
+            margin: 30px auto;
+            border-collapse: collapse;
+            background: #2d3748;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        thead {
+            background: #4a5568;
+        }
+
+        th, td {
+            text-align: center;
+            padding: 15px;
+            font-size: 1rem;
+        }
+
+        th {
+            color: #81e6d9;
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+
+        tbody tr {
+            transition: background 0.2s ease-in-out;
+        }
+
+        tbody tr:hover {
+            background: #4a5568;
+        }
+
+        td {
+            color: #e2e8f0;
+        }
+
+        .status-online {
+            color: #48bb78;
+            font-weight: bold;
+        }
+
+        .status-offline {
+            color: #e53e3e;
+            font-weight: bold;
+        }
+
+        a {
+            color: #4fd1c5;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<a href="/ads/requests">Show ads requests</a>
+<body>
+    <h1>Aigle Air Monitoring</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>MAC Address</th>
+                <th>Name</th>
+                <th>Location</th>
+                <th>Online Status</th>
+              
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% systems.forEach(system => { %>
+            <tr>
+                <td><%= system.macAddress %></td>
+                <td><%= system.name %></td>
+                <td><%= system.location %></td>
+                <td class="<%= system.isOnline ? 'status-online' : 'status-offline' %>">
+                    <%= system.isOnline ? 'Online' : 'Offline' %>
+                </td>
+
+                <td>
+                    <a href='/api/systems/<%= system.macAddress %>'>Check More</a>
+                </td>
+            </tr>
+            <% }); %>
+        </tbody>
+    </table>
+</body>
+</html>
